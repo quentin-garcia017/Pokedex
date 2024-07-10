@@ -1,0 +1,402 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    font-family: Arial, sans-serif;
+
+    --color-1: #5BA9D9;
+    --color-2: #023859;
+    --color-3: #03588C;
+    --color-4: #B8C6D9;
+    --color-5: #011126;
+
+    --waterdiving-1: #0339A6;
+    --waterdiving-2: #023E73;
+    --waterdiving-3: #055BA6;
+    --waterdiving-4: #08678C;
+    --waterdiving-5: #3FB2BF;
+
+    --game-1: #011526;
+    --game-2: #012E40;
+    --game-3: #025159;
+    --game-4: #038C8C;
+    --game-5: #8EBFB6;
+
+    --game-6: #021859;
+    --game-7: #023373;
+    --game-8: #368ABF;
+    --game-9: #79BED9;
+    --game-10:#F2F2F2;
+
+
+  }
+  body {
+    display: flex;
+    flex-direction: column;
+    background-image: url('../img/lugia.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+  header {
+    width: 75%;
+    height: 10%;
+    color: #fff;
+    padding: 10px;
+  }
+  main {
+    display: flex;
+    flex: 1;
+    overflow: hidden;
+  }
+  aside.teams {
+    width: 23%;
+    padding: 20px;
+    background-color: var(--game-2);
+    border-radius: 10px;
+    margin: 20px;
+    overflow-y: auto;
+    border: 2px solid var(--game-1);
+    position: relative;
+    opacity: 0.3;
+  }
+#scrollbar {
+  scrollbar-width: none;
+}
+.header {
+  text-align: center;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  font-size: xx-large;
+  margin: auto;
+}
+.header h2 {
+  color: var(--game-10);
+  background-color: var(--game-4);
+  padding: 0.2rem;
+  border-radius: 25px;
+  border-radius: 25px;
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  width: 30%;
+  justify-content: space-evenly;
+  border: 3px solid var(--color-5);
+  opacity: 0.5;
+}
+.header h2:hover {
+  background-color: var(--color-1);
+  color: var(--game-10);
+  border: 3px solid var(--game-10);
+  opacity: 1;
+}
+  .teams h2 {
+    text-align: center;
+    background-color: var(--color-1);
+    padding: 0.2rem;
+    border-radius: 10px;
+    color: var(--game-3);
+    margin-bottom: 1rem;
+    border: 2px solid var(--game-3);
+  }
+  .teams h2:hover {
+    background-color: var(--color-3);
+    color: var(--game-10);
+    border: 2px solid var(--game-10);
+  }
+  .team-list .team {
+    margin-bottom: 0px;
+    border: 5px solid var(--color-3);
+    border-radius: 10px;
+    background-color: var(--color-5);
+    padding: 0.2rem;
+    margin: 0.3rem;
+    display: flex;
+    justify-content: space-between;
+    color: var(--game-10);
+  }
+  .team-list .team:hover {
+    transform: scale(1.1);
+    background-color: var(--color-1);
+  }
+  .team h3 {
+    margin: 0;
+    border: 2px solid var(--color-3);
+    border-radius: 10px;
+    background-color: var(--color-2);
+    width: 50%;
+    text-align: center;
+
+    padding: 0.2rem;
+  }
+  .team ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  .team ul li {
+    margin-bottom: 5px;
+  }
+  #add-team-btn {
+    display: block;
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #061726;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+    text-align: center;
+  }
+  #add-team-btn:hover {
+    background-color: var(--game-10);
+    color: var(--color-5);
+  }
+  section.pokemon-list {
+    width: 75%;
+    padding: 20px;
+    overflow-y: auto;
+    opacity: 0;
+  }
+
+  .pokemon-list h2 {
+    background-color: var(--game-9);
+    color: var(--color-5);
+    padding: 0.8rem;
+    margin-bottom: 1rem;
+    text-align: center;
+    border-radius: 10px;
+    font-size: xx-large;
+    border: 3px solid var(--color-5);
+  }
+
+  .pokemon-list h2:hover {
+    background-color: var(--game-1);
+    color: var(--game-10);
+    border: 3px solid var(--game-10);
+  }
+
+  .pokemon-list .grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+  }
+  .pokemon-list .grid div {
+    background-color: var(--game-3);
+    height: 150px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    border: 4px solid var(--color-5);
+  }
+  .pokemon-list .grid div:hover {
+    background-color: var(--color-1);
+  }
+  .modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4);
+  }
+  .modal-content {
+    background-color: var(--waterdiving-5);
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 500px;
+    border-radius: 10px;
+  }
+  .modal-content h2 {
+    color: var(--game-3);
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+  .close-btn {
+    color: var(--color-5);
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+  .close-btn:hover,
+  .close-btn:focus {
+    transform: scale(2);
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  .pokemon-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #F4F4F4;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: transform 0.2s;
+  }
+  .pokemon-card:hover {
+    transform: scale(1.05);
+  }
+  .pokemon-image {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    margin-bottom: 0px;
+  }
+  .pokemon-detail-image {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    margin-top: 10px;
+  }
+
+  .title-pokemon {
+    margin: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+    border: 2px solid white;
+    border-radius: 10px;
+    background-color: var(--game-10);
+    padding: 0.2rem;
+    margin: 0.1rem;
+    cursor: pointer;
+    color: var(--game-3);
+  }
+
+  .pokemon-grid {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: var(--game-7);
+  }
+
+.pokemon-types {
+  width: 23%;
+    padding: 20px;
+    background-color: var(--game-6);
+    border-radius: 10px;
+    margin: 20px;
+    overflow-y: auto;
+    border: 2px solid var(--color-5);
+    opacity: 0.3;
+}
+
+.pokemon-types h2 {
+  color: var(--game-8);
+  background-color: var(--game-10);
+  text-align: center;
+  border-radius: 10px;
+  padding: 0.2rem;
+  margin-bottom: 1rem;
+  border: 2px solid var(--game-8);
+}
+.pokemon-types h2:hover {
+  background-color: var(--color-5);
+  color: var(--game-10);
+  border: 2px solid var(--game-10);
+}
+
+  .pokemon-type {
+    margin-bottom: 0px;
+    border: 2px solid var(--game-8);
+    border-radius: 10px;
+    background-color: var(--game-7);
+    padding: 0.2rem;
+    margin: 0.3rem;
+    display: flex;
+    justify-content: center;
+    color: white;
+  }
+  .pokemon-type:hover {
+    transform: scale(1.1);
+    background-color: var(--waterdiving-5);
+  }
+  .pokemon-type h3 {
+    margin: 0;
+    border: 2px solid var(--color-3);
+    border-radius: 10px;
+    background-color: var(--color-2);
+    width: 50%;
+    text-align: center;
+
+    padding: 0.2rem;
+  }
+  .pokemon-type ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  .pokemon-type ul li {
+    margin-bottom: 5px; 
+  }
+
+  .type-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 10px;
+    padding: 10px;
+    background-color: var(--bg-color);
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    justify-items: center;
+  }
+  .type-grid > *:first-child {
+    grid-column: 1 / -1;
+  }
+  .type-grid p {
+    display: flex;
+    color: var(--game-3);
+  }
+
+  .pokemon-types .pokemon-types-list div{
+    cursor: pointer;
+  }
+
+  .grid div {
+    display: flex;
+    flex-direction: column;
+  }
+  .grid div:hover {
+    transform: scale(1.1);
+  }
+
+  .icon {
+    font-size: 1.5rem;  
+    display: none;
+  }
+
+  .color-circle {
+    display: block;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 1px solid #000;
+    margin-left: 10px;
+  }
+
+  .team-buttons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 33%;
+  }
+
+  .pokemon-team-detail {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    justify-items: center;
+  }
+
+  
