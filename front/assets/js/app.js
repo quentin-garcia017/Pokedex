@@ -559,6 +559,27 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
     
+  async function searchPokemon(name) {
+  try {
+      const response = await fetch(`${apiBaseUrl}/pokemons/pokemon/${name}`);
+      if (!response.ok) {
+          throw new Error('Pokemon not found');
+      }
+      const data = await response.json();
+      console.log('Pokemon found:', data);
+      showPokemonDetails(data.id);
+  } catch (error) {
+      console.error('Error fetching pokemon:', error);
+  }
+}
+
+document.querySelector('.navbar-search').addEventListener('keyup', async (event) => {
+  if (event.key === 'Enter') {
+      const searchTerm = event.target.value.trim().toLowerCase();
+      await searchPokemon(searchTerm);
+      event.target.value = '';
+  }
+});
   
   
 
