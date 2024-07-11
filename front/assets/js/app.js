@@ -20,7 +20,17 @@ document.addEventListener('DOMContentLoaded', () => {
   const pokemonIdToAdd = document.getElementById('pokemon-id-to-add');
   const navbar = document.querySelector('.navbar');
 
+  document.getElementById('titleHome').addEventListener('click', function() {
+    window.location.href = 'index.html';
+});
 
+  document.getElementById('signupButton').addEventListener('click', function() {
+    window.location.href = 'signup.html';
+});
+  
+  document.getElementById('loginButton').addEventListener('click', function() {
+    window.location.href = 'login.html';
+});
 
 
   // Récupérer les équipes et les Pokémon au chargement de la page
