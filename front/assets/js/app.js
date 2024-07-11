@@ -446,7 +446,7 @@ document.addEventListener('DOMContentLoaded', () => {
       .then(data => {
         const pokemonDetails = document.getElementById('pokemon-details');
         pokemonDetails.classList.add('pokemon-grid');
-        pokemonDetails.textContent = 
+        /*pokemonDetails.textContent = 
         `Détails du Pokémon: ${data.name} - 
         HP : ${data.hp}  - 
         ATK : ${data.atk} - 
@@ -454,7 +454,34 @@ document.addEventListener('DOMContentLoaded', () => {
         ATK_SPE : ${data.atk_spe} - 
         DEF_SPE : ${data.def_spe} - 
         SPEED : ${data.speed} -`;
-        
+        */
+
+        // Créer un élément ul
+        const ul = document.createElement('ul');
+
+        // Fonction pour créer un li et l'ajouter à ul
+        const addListItem = (text) => {
+            const li = document.createElement('li');
+            li.textContent = text;
+            ul.appendChild(li);
+        };
+
+        // Ajouter les détails du Pokémon dans des éléments li
+        addListItem(`Nom : ${data.name}`);
+        addListItem(`HP : ${data.hp}`);
+        addListItem(`ATK : ${data.atk}`);
+        addListItem(`DEF : ${data.def}`);
+        addListItem(`ATK_SPE : ${data.atk_spe}`);
+        addListItem(`DEF_SPE : ${data.def_spe}`);
+        addListItem(`SPEED : ${data.speed}`);
+
+        // Vider le contenu précédent de pokemonDetails
+        pokemonDetails.textContent = '';
+
+        // Ajouter ul à l'élément pokemonDetails
+        pokemonDetails.appendChild(ul);
+
+
         const imgPath = `./assets/img/${pokemonId}.webp`;
         // Créer un nouvel élément img
         const imgElement = document.createElement('img');
