@@ -19,12 +19,51 @@
      <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
 </head>
 <header class="header">
-    <h2 id="titleTeams">Teams</h2>
-    <h2 id="titleTypes">Types</h2>
-    <h2 id="titlePokemons">Pokemons</h2>
+<nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a class="navbar-item" href="#">
+      <img src="./assets/icons/logo-lugia.png" alt="Logo" class="logo">
+    </a>
+
+    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+
+  <div id="navbarBasicExample" class="navbar-menu">
+    <div class="navbar-start">
+      <a class="navbar-item" id="titleHome" href="#titleHome">Accueil</a>
+      <a class="navbar-item" id="titleTeams" href="#titleTeams">Teams</a>
+      <a class="navbar-item" id="titleTypes" href="#titleTypes">Types</a>
+      <a class="navbar-item" id="titlePokemons" href="#titlePokemons">Pokemons</a>
+    </div>
+
+    <div class="navbar-end">
+      <div class="navbar-item">
+        <div class="buttons">
+          <a class="button is-primary">
+            <strong>Connexion</strong>
+          </a>
+          <a class="button is-light">
+            <strong>Inscription</strong>
+          </a>
+          <input type="text" id="searchInput" placeholder="Recherche..." class="navbar-item navbar-search">
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+
+
+
+   
   </header>
 
   <main>
+
+    
     
     <aside class="teams" id="scrollbar">
       <h2>TEAMS</h2>

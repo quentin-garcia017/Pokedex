@@ -41,7 +41,8 @@ html, body {
     width: 75%;
     height: 10%;
     color: #fff;
-    padding: 10px;
+    padding: 0;
+    margin: 0;
   }
   main {
     display: flex;
@@ -71,6 +72,9 @@ html, body {
   justify-content: space-between;
   font-size: xx-large;
   margin: auto;
+  margin: 0;
+  width: 100%;
+  height: 10%;
 }
 .header h2 {
   color: var(--game-10);
@@ -93,6 +97,28 @@ html, body {
   border: 3px solid var(--game-10);
   opacity: 1;
 }
+.logo {
+  width: 55px;
+  height: 55px;
+}
+#navbarBasicExample {
+  background-color: var(--color-2);
+}
+
+.navbar{
+  width: 100%;
+  opacity: 0.5;
+}
+
+.navbar-item {
+  opacity: 1;
+}
+
+.navbar-item:hover {
+  background-color: var(--color-4);
+  opacity: 1;
+}
+
   .teams h2 {
     text-align: center;
     background-color: var(--color-1);
@@ -155,6 +181,12 @@ html, body {
     background-color: var(--game-10);
     color: var(--color-5);
   }
+  #add-pokemon-to-team-modal {
+    margin: 0;
+    width: 30%;
+    margin-top: 8rem;
+    margin-left: 8rem;
+  }
   section.pokemon-list {
     width: 75%;
     padding: 20px;
@@ -210,12 +242,12 @@ html, body {
   }
   .modal-content {
     background-color: var(--waterdiving-5);
-    margin: 15% auto;
     padding: 20px;
     border: 1px solid #888;
     width: 80%;
     max-width: 500px;
     border-radius: 10px;
+    color: var(--color-5);
   }
   .modal-content h2 {
     color: var(--game-3);
@@ -405,3 +437,9 @@ html, body {
     grid-template-columns: repeat(3, 1fr);
     justify-items: center;
   }
+
+  .button.is-primary {
+    
+    opacity: 1;
+}
+ 

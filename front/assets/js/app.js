@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const teamForm = document.getElementById('team-form');
   const pokemonList = document.querySelector('.pokemon-list .grid');
   const pokemonTypes = document.querySelector('.pokemon-types .pokemon-types-list');
+  const titleHome = document.getElementById('titleHome');
   const titleTeams = document.getElementById('titleTeams');
   const titleTypes = document.getElementById('titleTypes');
   const titlePokemons = document.getElementById('titlePokemons');
@@ -17,6 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const addPokemonToTeamModal = document.getElementById('add-pokemon-to-team-modal');
   const teamSelect = document.getElementById('team-select');
   const pokemonIdToAdd = document.getElementById('pokemon-id-to-add');
+  const navbar = document.querySelector('.navbar');
 
 
 
@@ -61,6 +63,14 @@ document.addEventListener('DOMContentLoaded', () => {
       element.style.opacity = '1';
     }
   }
+
+  function toggleMiddleOpacity(element) {
+    if (element.style.opacity === '1') {
+      element.style.opacity = '0.5';
+    } else {
+      element.style.opacity = '1';
+    }
+  }
  
   titleTeams.addEventListener('click', () => {
     togglePartialOpacity(asideTeams);
@@ -70,6 +80,9 @@ document.addEventListener('DOMContentLoaded', () => {
   });
   titlePokemons.addEventListener('click', () => {
     toggleOpacity(sectionpokemons);
+  });
+  titleHome.addEventListener('click', () => {
+    toggleMiddleOpacity(navbar);
   });
  
   // Fonction pour initialiser la fonctionnalité SortableJS
