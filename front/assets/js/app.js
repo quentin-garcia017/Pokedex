@@ -14,6 +14,10 @@ document.addEventListener('DOMContentLoaded', () => {
   const asideTeams = document.querySelector('aside.teams');
   const pokemontypes = document.querySelector('.pokemon-types');
   const sectionpokemons = document.querySelector('section.pokemon-list');
+  const addPokemonToTeamModal = document.getElementById('add-pokemon-to-team-modal');
+  const teamSelect = document.getElementById('team-select');
+  const pokemonIdToAdd = document.getElementById('pokemon-id-to-add');
+
 
 
 
@@ -429,15 +433,18 @@ document.addEventListener('DOMContentLoaded', () => {
       })
       .catch(error => console.error('Error fetching pokemons:', error));
 
-      document.getElementById('team-form').addEventListener('submit', (e) => {
-        e.preventDefault();
-        const formData = new FormData(e.target);
-        const teamId = formData.get('team-id');
-        const pokemonId = formData.get('pokemon-id');
-        console.log('Form data:', formData);
-        submitAddToTeamModal(teamId, pokemonId);
-        document.getElementById('add-to-team-modal').style.display = 'none';
-      });
+        const addPokemonToTeamModal = document.getElementById('add-pokemon-to-team-modal');
+        const teamSelect = document.getElementById('team-select');
+        const pokemonIdToAdd = document.getElementById('pokemon-id-to-add');
+
+        document.getElementById('add-pokemon-to-team-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const teamId = teamSelect.value;
+            const pokemonId = pokemonIdToAdd.value;
+            submitAddToTeamModal(teamId, pokemonId);
+            addPokemonToTeamModal.style.display = 'none';
+        });
+     
   }
   // Fonction pour afficher les détails d'un Pokémon
   function showPokemonDetails(pokemonId) {
@@ -446,15 +453,6 @@ document.addEventListener('DOMContentLoaded', () => {
       .then(data => {
         const pokemonDetails = document.getElementById('pokemon-details');
         pokemonDetails.classList.add('pokemon-grid');
-        /*pokemonDetails.textContent = 
-        `Détails du Pokémon: ${data.name} - 
-        HP : ${data.hp}  - 
-        ATK : ${data.atk} - 
-        DEF : ${data.def} - 
-        ATK_SPE : ${data.atk_spe} - 
-        DEF_SPE : ${data.def_spe} - 
-        SPEED : ${data.speed} -`;
-        */
 
         // Créer un élément ul
         const ul = document.createElement('ul');
@@ -500,42 +498,49 @@ document.addEventListener('DOMContentLoaded', () => {
       
   }
 
+  
+
   function showAddToTeamModal(pokemonId) {
-    document.getElementById('add-to-team-modal').style.display = 'block';
-    document.getElementById('selected-pokemon-id').value = pokemonId;
+    const addPokemonToTeamModal = document.getElementById('add-pokemon-to-team-modal');
+    document.getElementById('add-pokemon-to-team-form').reset();
+    addPokemonToTeamModal.style.display = 'block';
+    const teamSelect = document.getElementById('team-select');
+    teamSelect.textContent = '';
+    fetch(`${apiBaseUrl}/teams`)
+      .then(response => response.json())
+      .then(data => {
+        data.forEach(team => {
+          const option = document.createElement('option');
+          option.value = team.id;
+          option.textContent = team.name;
+          teamSelect.appendChild(option);
+        });
+      })
+      .catch(error => console.error('Error fetching teams:', error));
+    document.getElementById('pokemon-id-to-add').value = pokemonId;
   }
  
   function submitAddToTeamModal(teamId, pokemonId) {
-     
-    const data = {
-      team_id: Number(teamId),
-      pokemon_id: Number(pokemonId)
-    }
-    
-    console.log('data:', data);
-
     fetch(`${apiBaseUrl}/teams/${teamId}/pokemons/${pokemonId}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(data)
+      }
     })
-     .then(response => {
-    if (!response.ok) {
-      throw new Error('Failed to add Pokémon to team');
-    }
-    return response.json();
-  })
-  .then(data => {
-    document.getElementById('add-to-team-modal').style.display = 'none';
-    console.log('Pokémon ajouté à l\'équipe avec succès', data);
-    alert('Pokémon ajouté à l\'équipe avec succès!');
-  })
-  .catch(error => {
-    console.error('Erreur lors de l\'ajout du Pokémon à l\'équipe:', error);
-    alert('Erreur lors de l\'ajout du Pokémon à l\'équipe.');
-  });
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Failed to add Pokémon to team');
+      }
+      return response.json();
+    })
+    .then(data => {
+      console.log('Pokémon ajouté à l\'équipe avec succès', data);
+      alert('Pokémon ajouté à l\'équipe avec succès!');
+    })
+    .catch(error => {
+      console.error('Erreur lors de l\'ajout du Pokémon à l\'équipe:', error);
+      alert('Erreur lors de l\'ajout du Pokémon à l\'équipe.');
+    });
   }
     
   
