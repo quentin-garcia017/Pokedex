@@ -44,6 +44,8 @@ document.addEventListener('DOMContentLoaded', () => {
     teamModal.style.display = 'none';
   });
 
+ 
+
   // Fonction pour afficher ou cacher un élément
   function togglePartialOpacity(element) {
     if (element.style.opacity === '1') {
@@ -330,7 +332,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Accéder directement au tableau de Pokémon
         const pokemons = data.pokemons;
         pokemons.forEach(pokemon => {
-          const imgPath = `./assets/img/${pokemon.id}.webp`;
+          const imgPath = `./assets/img/${pokemon.id}.png`;
           const div = document.createElement('div');
           div.classList.add ='pokemon-grid';
           div.classList.add = 'pokemon-card';
@@ -387,7 +389,7 @@ document.addEventListener('DOMContentLoaded', () => {
       .then(data => {
         pokemonList.textContent = ''; // Clear existing pokemons
         data.forEach((pokemon, index) => {
-          const imgPath = `./assets/img/${index + 1}.webp`;
+          const imgPath = `./assets/img/${index + 1}.png`;
           const div = document.createElement('div');
           div.classList.add ='pokemon-grid';
           div.classList.add = 'pokemon-card';
@@ -417,7 +419,7 @@ document.addEventListener('DOMContentLoaded', () => {
           // Au clic sur le bouton d'ajout à une équipe, afficher la modale de sélection de l'équipe
 
           addToTeamButton.addEventListener('click', () => {
-            showAddToTeamModal(pokemon.id);
+            showAddToTeamModal(pokemon.id);        
           });
           
           // Ajouter les éléments créés au div
@@ -446,6 +448,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
      
   }
+
   // Fonction pour afficher les détails d'un Pokémon
   function showPokemonDetails(pokemonId) {
     fetch(`${apiBaseUrl}/pokemons/${pokemonId}`)
@@ -480,7 +483,7 @@ document.addEventListener('DOMContentLoaded', () => {
         pokemonDetails.appendChild(ul);
 
 
-        const imgPath = `./assets/img/${pokemonId}.webp`;
+        const imgPath = `./assets/img/${pokemonId}.png`;
         // Créer un nouvel élément img
         const imgElement = document.createElement('img');
 
@@ -634,7 +637,7 @@ document.addEventListener('DOMContentLoaded', () => {
           const pokemons = data;
           console.log('Données des Pokémon du type récupérées:', pokemons);
           pokemons.forEach(pokemon => {
-            const imgPath = `./assets/img/${pokemon.id}.webp`;
+            const imgPath = `./assets/img/${pokemon.id}.png`;
             const div = document.createElement('div');
             div.classList.add ='pokemon-grid';
             div.classList.add = 'pokemon-card';
