@@ -26,6 +26,14 @@ document.addEventListener('DOMContentLoaded', () => {
   const loginModal = document.getElementById('login-modal');
   const signupModal = document.getElementById('signup-modal');
   const closeButtons = document.querySelectorAll('.delete');
+  const signupForm = document.getElementById('signup-form');
+  const loginForm = document.getElementById('login-form');
+
+  // Récupérer les équipes et les Pokémon au chargement de la page
+  fetchTeams();
+  fetchPokemons();
+  fetchPokemonTypes();
+
 
   loginButton.addEventListener('click', () => {
       loginModal.classList.add('is-active');
@@ -47,11 +55,76 @@ document.addEventListener('DOMContentLoaded', () => {
       }
   });
 
+  // S'inscrire
+  signupForm.addEventListener('submit', async (event) => {
+    event.preventDefault();
+    const formData = new FormData(signupForm);
+    const data = {
+        username: formData.get('username'),
+        email: formData.get('email'),
+        password: formData.get('password'),
+        confirmPassword: formData.get('confirmPassword')
+    };
 
-  // Récupérer les équipes et les Pokémon au chargement de la page
-  fetchTeams();
-  fetchPokemons();
-  fetchPokemonTypes();
+    try {
+        const response = await fetch(`${apiBaseUrl}/signup`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        });
+
+        if (!response.ok) {
+            const errorData = await response.json();
+            alert(`Error: ${errorData.message}`);
+            return;
+        }
+
+        const result = await response.json();
+        alert('Inscription réussie !');
+        signupModal.classList.remove('is-active');
+    } catch (error) {
+        console.error('Error:', error);
+        alert('Une erreur est survenue, veuillez réessayer.');
+    }
+  });
+
+  // Se connecter
+  loginForm.addEventListener('submit', async (event) => {
+    event.preventDefault();
+    const formData = new FormData(loginForm);
+    const data = {
+        username: formData.get('username'),
+        password: formData.get('password')
+    };
+
+    try {
+        const response = await fetch(`${apiBaseUrl}/login`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        });
+
+        if (!response.ok) {
+            const errorData = await response.json();
+            alert(`Error: ${errorData.message}`);
+            return;
+        }
+
+        alert('Connexion réussie !');
+        loginModal.classList.remove('is-active');
+        // Redirigez l'utilisateur vers la page des pokémons après une connexion réussie
+        window.location.href = `/front/`;
+    } catch (error) {
+        console.error('Error:', error);
+        alert('Une erreur est survenue, veuillez réessayer.');
+    }
+});
+
+
   
   
   // Ouvrir la modal d'ajout de team
