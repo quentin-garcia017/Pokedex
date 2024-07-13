@@ -38,6 +38,6 @@ router.get("/pokemons/leaderboard", pokemonController.getPokemonLeaderboard);
 */
 
 
+router.post("/signup", authController.signupAction);
 router.post("/login", authController.loginAction);
 router.get("/logout", authController.logout);
-router.post("/signup", authController.signupAction);

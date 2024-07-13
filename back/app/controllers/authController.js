@@ -47,7 +47,7 @@ async loginAction(req, res) {
         }
 
         req.session.userId = user.id;
-        res.redirect('/pokemons');
+        res.redirect(`/pokemons`);
         } catch (error) {
             console.error(error);
             res.status(500).json({ message: "Erreur interne du serveur" });
