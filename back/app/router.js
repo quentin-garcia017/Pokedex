@@ -37,8 +37,7 @@ router.post("/pokemons/:id/votes", pokemonController.addPokemonVote);
 router.get("/pokemons/leaderboard", pokemonController.getPokemonLeaderboard);
 */
 
-router.get("/login", authController.login);
+
 router.post("/login", authController.loginAction);
 router.get("/logout", authController.logout);
-router.get("/signup", authController.signup);
 router.post("/signup", authController.signupAction);

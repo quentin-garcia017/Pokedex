@@ -11,8 +11,7 @@ import putUserDataInReq from "./app/middlewares/putUserDataInReq.js";
 
 // Création de l'application
 const app = express();
-app.set('view engine', 'ejs');
-app.set('views', './app/views');
+
 
 // Autorisation des Cross-origin requests
 app.use(cors());

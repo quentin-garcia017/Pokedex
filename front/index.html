@@ -162,6 +162,71 @@
       </div>
     </div>
     
+    <div id="login-modal" class="modal">
+      <div class="modal-background"></div>
+      <div class="modal-card">
+          <header class="modal-card-head">
+              <p class="modal-card-title">Connexion</p>
+              <button class="delete" aria-label="close"></button>
+          </header>
+          <section class="modal-card-body">
+              <form action="/login" method="POST">
+                  <div class="field">
+                      <label class="label" for="usernameConfirm">Nom d'utilisateur</label>
+                      <div class="control">
+                          <input class="input" type="text" id="usernameConfirm" name="username" required>
+                      </div>
+                  </div>
+                  <div class="field">
+                      <label class="label" for="password">Mot de passe</label>
+                      <div class="control">
+                          <input class="input" type="password" id="passwordConfirm" name="password" required>
+                      </div>
+                  </div>
+                  <button class="button is-primary" type="submit">Connexion</button>
+              </form>
+          </section>
+      </div>
+  </div>
+
+  <div id="signup-modal" class="modal">
+      <div class="modal-background"></div>
+      <div class="modal-card">
+          <header class="modal-card-head">
+              <p class="modal-card-title">Inscription</p>
+              <button class="delete" aria-label="close"></button>
+          </header>
+          <section class="modal-card-body">
+              <form action="/signup" method="POST">
+                  <div class="field">
+                      <label class="label" for="username">Nom d'utilisateur</label>
+                      <div class="control">
+                          <input class="input" type="text" id="username" name="username" required>
+                      </div>
+                  </div>
+                  <div class="field">
+                      <label class="label" for="email">Email</label>
+                      <div class="control">
+                          <input class="input" type="email" id="email" name="email" required>
+                      </div>
+                  </div>
+                  <div class="field">
+                      <label class="label" for="password">Mot de passe</label>
+                      <div class="control">
+                          <input class="input" type="password" id="password" name="password" required>
+                      </div>
+                  </div>
+                  <div class="field">
+                      <label class="label" for="confirmPassword">Confirmer le mot de passe</label>
+                      <div class="control">
+                          <input class="input" type="password" id="confirmPassword" name="confirmPassword" required>
+                      </div>
+                  </div>
+                  <button class="button is-primary" type="submit">Inscription</button>
+              </form>
+          </section>
+      </div>
+  </div>
     
 
     

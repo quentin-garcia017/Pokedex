@@ -219,7 +219,7 @@ html, body {
     gap: 10px;
   }
   .pokemon-list .grid div {
-    background-color: var(--game-3);
+    background-color: rgba(2, 56, 89, 0.5);
     height: 150px;
     border-radius: 10px;
     display: flex;

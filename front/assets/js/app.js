@@ -19,24 +19,40 @@ document.addEventListener('DOMContentLoaded', () => {
   const teamSelect = document.getElementById('team-select');
   const pokemonIdToAdd = document.getElementById('pokemon-id-to-add');
   const navbar = document.querySelector('.navbar');
+  const html = document.querySelector('html');
 
-  document.getElementById('titleHome').addEventListener('click', function() {
-    window.location.href = 'index.html';
-});
+  const loginButton = document.getElementById('loginButton');
+  const signupButton = document.getElementById('signupButton');
+  const loginModal = document.getElementById('login-modal');
+  const signupModal = document.getElementById('signup-modal');
+  const closeButtons = document.querySelectorAll('.delete');
 
-  document.getElementById('signupButton').addEventListener('click', function() {
-    window.location.href = 'signup.html';
-});
-  
-  document.getElementById('loginButton').addEventListener('click', function() {
-    window.location.href = 'login.html';
-});
+  loginButton.addEventListener('click', () => {
+      loginModal.classList.add('is-active');
+  });
+
+  signupButton.addEventListener('click', () => {
+      signupModal.classList.add('is-active');
+  });
+
+  closeButtons.forEach(button => {
+      button.addEventListener('click', () => {
+          button.closest('.modal').classList.remove('is-active');
+      });
+  });
+
+  document.addEventListener('click', (event) => {
+      if (event.target.classList.contains('modal-background')) {
+          event.target.closest('.modal').classList.remove('is-active');
+      }
+  });
 
 
   // Récupérer les équipes et les Pokémon au chargement de la page
   fetchTeams();
   fetchPokemons();
   fetchPokemonTypes();
+  
   
   // Ouvrir la modal d'ajout de team
   addTeamBtn.addEventListener('click', () => {
@@ -55,9 +71,7 @@ document.addEventListener('DOMContentLoaded', () => {
     addTeam(teamName);
     teamModal.style.display = 'none';
   });
-
- 
-
+  
   // Fonction pour afficher ou cacher un élément
   function togglePartialOpacity(element) {
     if (element.style.opacity === '1') {
@@ -69,8 +83,10 @@ document.addEventListener('DOMContentLoaded', () => {
   function toggleOpacity(element) {
     if (element.style.opacity === '1') {
       element.style.opacity = '0';
+      
     } else {
       element.style.opacity = '1';
+      
     }
   }
 
@@ -91,6 +107,7 @@ document.addEventListener('DOMContentLoaded', () => {
   titlePokemons.addEventListener('click', () => {
     toggleOpacity(sectionpokemons);
   });
+ 
   titleHome.addEventListener('click', () => {
     toggleMiddleOpacity(navbar);
   });
