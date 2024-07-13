@@ -1,15 +1,17 @@
-
 import { Team, Pokemon, Type } from "../models/index.js";
+import { NotFoundError } from "../utils/errors.js"
 
 
 export const getTeams = async (req, res) => {
     const teams = await Team.findAll();
     res.json(teams);
+    
 };
 
 export const getTeam = async (req, res) => {
     const team = await Team.findByPk(req.params.id);
     res.json(team);
+    if (!team) throw new NotFoundError(`Team not found with id ${req.params.id}`);
 };
 
 export const createTeam = async (req, res) => {
@@ -19,12 +21,15 @@ export const createTeam = async (req, res) => {
 
 export const updateTeam = async (req, res) => {
     const team = await Team.findByPk(req.params.id);
+    if (!team) throw new NotFoundError(`Team not found with id ${req.params.id}`);
     await team.update(req.body);
     res.json(team);
+
 };
 
 export const deleteTeam = async (req, res) => {
     const team = await Team.findByPk(req.params.id);
+    if (!team) throw new NotFoundError(`Team not found with id ${req.params.id}`);
     await team.destroy();
     res.json(team);
 };
@@ -44,15 +49,15 @@ export async function getOneTeamAndPokemons(req, res){
 
 
 export const addPokemonToTeam = async (req, res) => {
-    try {
+    
         const pokemon = await Pokemon.findByPk(req.params.pokemonId);
         const team = await Team.findByPk(req.params.teamId);
 
         if (!pokemon) {
-            return res.status(404).json({ message: "Pokemon non trouvé" });
+            throw new NotFoundError(`Pokemon not found with id ${req.params.pokemonId}`);
         }
         if (!team) {
-            return res.status(404).json({ message: "Équipe non trouvée" });
+            throw new NotFoundError(`Team not found with id ${req.params.teamId}`);
         }
 
         // Ajouter le Pokémon à l'équipe
@@ -65,23 +70,20 @@ export const addPokemonToTeam = async (req, res) => {
         });
 
         res.json(updatedTeam);
-    } catch (error) {
-        console.error("Erreur lors de l'ajout du Pokémon à l'équipe:", error);
-        res.status(500).json({ message: "Erreur interne du serveur" });
-    }
+   
 };
 
 
 export const removePokemonFromTeam = async (req, res) => {
-    try {
+    
         const pokemon = await Pokemon.findByPk(req.params.pokemonId);
         const team = await Team.findByPk(req.params.teamId);
 
         if (!pokemon) {
-            return res.status(404).json({ message: "Pokemon non trouvé" });
+            throw new NotFoundError(`Pokemon not found with id ${req.params.pokemonId}`);
         }
         if (!team) {
-            return res.status(404).json({ message: "Équipe non trouvée" });
+            throw new NotFoundError(`Team not found with id ${req.params.teamId}`);
         }
 
         // Vérifier si le Pokémon est dans l'équipe
@@ -99,10 +101,7 @@ export const removePokemonFromTeam = async (req, res) => {
         });
 
         res.json(updatedTeam);
-    } catch (error) {
-        console.error("Erreur lors du retrait du Pokémon de l'équipe:", error);
-        res.status(500).json({ message: "Erreur interne du serveur" });
-    }
+   
 };
 
 

@@ -1,8 +1,8 @@
-import sequelize from '../database.js';
-import { DataTypes, Model } from 'sequelize';
+import { sequelize } from "../database.js";
+import { Model, DataTypes } from "sequelize";
 
 // 1. Je créer ma class qui extends de Model
-class User extends Model {}
+export class User extends Model {}
 
 // 2. Je dois initialiser mon modèle
 User.init(
@@ -33,4 +33,4 @@ User.init(
   },
 );
 
-export default User;
+

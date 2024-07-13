@@ -1,7 +1,6 @@
 import { Type } from "./Type.js";
 import { Team } from "./Team.js";
 import { Pokemon } from "./Pokemon.js";
-import { User } from "./User.js";
 
 // Définir les relations Many-to-Many entre Pokemon et Type
 Pokemon.belongsToMany(Type, {

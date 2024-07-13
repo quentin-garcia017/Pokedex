@@ -1,14 +1,22 @@
 import { Pokemon } from "../models/Pokemon.js";
 import { Sequelize } from "sequelize";
+import { NotFoundError } from "../utils/errors.js";
 
 export const getPokemons = async (req, res) => {
     const pokemons = await Pokemon.findAll();
     res.json(pokemons);
+    if (!pokemons) {
+        throw new NotFoundError("No pokemons found");
+    }
+
 };
 
 export const getPokemon = async (req, res) => {
     const pokemon = await Pokemon.findByPk(req.params.id);
     res.json(pokemon);
+    if (!pokemon) {
+        throw new NotFoundError(`Pokémon not found with id ${req.params.id}`);
+    }
 };
 
 export const getpokemonbyname = async (req, res) => {
@@ -21,7 +29,7 @@ export const getpokemonbyname = async (req, res) => {
             }
         });
         if (!pokemon) {
-            return res.status(404).json({ message: "Pokemon not found" });
+            throw new NotFoundError(`Pokémon not found with name ${req.params.name}`);
         }
         res.status(200).json(pokemon);
     } catch (error) {
