@@ -29,7 +29,7 @@ const authController = {
     },
     
 
-async loginAction(req, res) {
+    async loginAction(req, res) {
         const resultValidation = loginSchema.safeParse(req.body);
         if (!resultValidation.success) {
             return res.status(400).json({ message: resultValidation.error.message });
@@ -82,6 +82,13 @@ async loginAction(req, res) {
         } catch (error) {
             console.error(error);
             res.status(500).json({ message: "Erreur interne du serveur" });
+        }
+    },
+    async getAuthStatus(req, res) {
+        if (req.session.userId) {
+            res.json({ isAuthenticated: true });
+        } else {
+            res.json({ isAuthenticated: false });
         }
     },
 };

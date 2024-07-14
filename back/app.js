@@ -4,7 +4,6 @@ import "dotenv/config";
 import express from "express";
 import cors from "cors";
 
-
 import { router } from "./app/router.js";
 import session from "express-session";
 import putUserDataInReq from "./app/middlewares/putUserDataInReq.js";
@@ -14,11 +13,14 @@ const app = express();
 
 
 // Autorisation des Cross-origin requests
-app.use(cors());
+app.use(cors({
+  origin: 'http://127.0.0.1:5500', // URL de votre front-end
+  credentials: true,
+}));
 
 // Body parsers
-app.use(express.json()); // application/json
-app.use(express.urlencoded({ extended: true })); // application/x-www-form-urlencoded
+app.use(express.urlencoded({ extended: false })); 
+app.use(express.json()); 
 
 app.use(session({
   secret: 
@@ -26,13 +28,14 @@ app.use(session({
     "super secret",
   resave: false,
   saveUninitialized: true,
-  cookie: {
-    
-    maxAge: 1000 * 60 * 60 * 24 * 7, // 7 jours
-  },
+  cookie: {   httpOnly: true,
+    secure: false, 
+    maxAge: 1000 * 60 * 60 * 24
+  } 
 }));
 
 app.use(putUserDataInReq);
+
 
 // Mise en place du router
 app.use(router);

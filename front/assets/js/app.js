@@ -23,17 +23,55 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const loginButton = document.getElementById('loginButton');
   const signupButton = document.getElementById('signupButton');
+  const logoutButton = document.getElementById('logoutButton');
   const loginModal = document.getElementById('login-modal');
   const signupModal = document.getElementById('signup-modal');
   const closeButtons = document.querySelectorAll('.delete');
-  const signupForm = document.getElementById('signup-form');
   const loginForm = document.getElementById('login-form');
+  const signupForm = document.getElementById('signup-form');
 
   // Récupérer les équipes et les Pokémon au chargement de la page
+  console.log('Document loaded');
+
   fetchTeams();
   fetchPokemons();
   fetchPokemonTypes();
+  
+  
+  
+  
+  // Vérifier si l'utilisateur est connecté ou non
+  function checkAuthentication() {
+    console.log("Checking authentication status...");
+    fetch(`${apiBaseUrl}/auth/status`, {
+        method: 'GET',
+        credentials: 'include'
+    })
+    .then(response => {
+        console.log('Status response:', response);
+        return response.json();
+    })
+    .then(data => {
+        console.log('Auth status data:', data);
+        if (data.isAuthenticated) {
+            console.log('User is authenticated');
+            loginButton.style.display = 'none';
+            signupButton.style.display = 'none';
+            logoutButton.style.display = 'inline-block';
+        } else {
+            console.log('User is not authenticated');
+            loginButton.style.display = 'inline-block';
+            signupButton.style.display = 'inline-block';
+            logoutButton.style.display = 'none';
+        }
+    })
+    .catch(error => {
+        console.error('Error fetching auth status:', error);
+    });
+}
 
+checkAuthentication();
+  
 
   loginButton.addEventListener('click', () => {
       loginModal.classList.add('is-active');
@@ -72,6 +110,7 @@ document.addEventListener('DOMContentLoaded', () => {
             headers: {
                 'Content-Type': 'application/json'
             },
+            credentials: 'include',
             body: JSON.stringify(data)
         });
 
@@ -80,8 +119,6 @@ document.addEventListener('DOMContentLoaded', () => {
             alert(`Error: ${errorData.message}`);
             return;
         }
-
-        const result = await response.json();
         alert('Inscription réussie !');
         signupModal.classList.remove('is-active');
     } catch (error) {
@@ -93,6 +130,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Se connecter
   loginForm.addEventListener('submit', async (event) => {
     event.preventDefault();
+    console.log('Login form submitted');
     const formData = new FormData(loginForm);
     const data = {
         username: formData.get('username'),
@@ -105,6 +143,7 @@ document.addEventListener('DOMContentLoaded', () => {
             headers: {
                 'Content-Type': 'application/json'
             },
+            credentials: 'include',
             body: JSON.stringify(data)
         });
 
@@ -117,11 +156,34 @@ document.addEventListener('DOMContentLoaded', () => {
         alert('Connexion réussie !');
         loginModal.classList.remove('is-active');
         // Redirigez l'utilisateur vers la page des pokémons après une connexion réussie
-        window.location.href = `/front/`;
+        checkAuthentication();
     } catch (error) {
         console.error('Error:', error);
         alert('Une erreur est survenue, veuillez réessayer.');
     }
+});
+
+// Déconnexion
+logoutButton.addEventListener('click', async () => {
+  try {
+      const response = await fetch(`${apiBaseUrl}/logout`, {
+          method: 'GET',
+          credentials: 'include'
+      });
+
+      if (!response.ok) {
+          const errorData = await response.json();
+          alert(`Error: ${errorData.message}`);
+          return;
+      }
+
+      alert('Déconnexion réussie !');
+      window.location.href = '/';
+      checkAuthentication
+  } catch (error) {
+      console.error('Error:', error);
+      alert('Une erreur est survenue, veuillez réessayer.');
+  }
 });
 
 

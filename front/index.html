@@ -43,11 +43,14 @@
     <div class="navbar-end">
       <div class="navbar-item">
         <div class="buttons">
-          <a class="button is-primary" id="loginButton">
+          <a class="button is-primary" id="loginButton" style="display: none;">
             <strong>Connexion</strong>
           </a>
-          <a class="button is-light" id="signupButton">
+          <a class="button is-light" id="signupButton" style="display: none;">
             <strong>Inscription</strong>
+          </a>
+          <a class="button is-light" id="logoutButton" style="display: none;">
+            <strong>Déconnexion</strong>
           </a>
           <input type="text" id="searchInput" placeholder="Recherche..." class="navbar-item navbar-search">
         </div>
@@ -55,16 +58,11 @@
     </div>
   </div>
 </nav>
-
-
-
-   
-  </header>
+</header>
 
   <main>
 
-    
-    
+     
     <aside class="teams" id="scrollbar">
       <h2>TEAMS</h2>
 
@@ -170,7 +168,7 @@
               <button class="delete" aria-label="close"></button>
           </header>
           <section class="modal-card-body">
-              <form id="login-form" action="/login" method="POST">
+              <form id="login-form">
                   <div class="field">
                       <label class="label" for="usernameConfirm">Nom d'utilisateur</label>
                       <div class="control">

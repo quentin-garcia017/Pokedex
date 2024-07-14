@@ -3,9 +3,10 @@ import * as pokemonController from "./controllers/pokemonController.js";
 import * as typeController from "./controllers/typeController.js";
 import * as teamController from "./controllers/teamController.js";
 import authController from "./controllers/authController.js";
+import cw from "./utils/controllerWrapper.js";
 import checkIsLogged from "./middlewares/checkIsLogged.js";
 import checkIsAdmin from "./middlewares/checkIsAdmin.js";
-import cw from "./utils/controllerWrapper.js";
+
 
 
 export const router = Router();
@@ -41,3 +42,9 @@ router.get("/pokemons/leaderboard", pokemonController.getPokemonLeaderboard);
 router.post("/signup", authController.signupAction);
 router.post("/login", authController.loginAction);
 router.get("/logout", authController.logout);
+
+router.get("/auth/status", authController.getAuthStatus);
+
+
+
+
