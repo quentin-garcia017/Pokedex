@@ -19,24 +19,9 @@ export const getPokemon = async (req, res) => {
     }
 };
 
-export const getpokemonbyname = async (req, res) => {
-    try {
-        const pokemon = await Pokemon.findOne({
-            where: {
-                name: {
-                    [Sequelize.Op.iLike]: req.params.name
-                }
-            }
-        });
-        if (!pokemon) {
-            throw new NotFoundError(`Pokémon not found with name ${req.params.name}`);
-        }
-        res.status(200).json(pokemon);
-    } catch (error) {
-        console.error(error);
-        res.status(500).json({ message: "Server error" });
-    }
-};
+
+    
+
 
 /* marche pas
 export const addPokemonVote = async (req, res) => {

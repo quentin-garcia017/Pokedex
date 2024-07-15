@@ -13,7 +13,7 @@ export const router = Router();
 
 router.get("/pokemons", cw(pokemonController.getPokemons));
 router.get("/pokemons/:id", cw(pokemonController.getPokemon));
-router.get("/pokemons/pokemon/:name", cw(pokemonController.getpokemonbyname));
+
 
 router.get("/types", cw(typeController.getTypes));
 router.get("/types/:id", cw(typeController.getType));

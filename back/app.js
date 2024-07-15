@@ -15,7 +15,7 @@ const app = express();
 // Autorisation des Cross-origin requests
 app.use(cors({
   origin: 'http://127.0.0.1:5500', // URL de votre front-end
-  credentials: true,
+  credentials: true
 }));
 
 // Body parsers

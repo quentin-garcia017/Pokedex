@@ -30,6 +30,7 @@ const authController = {
     
 
     async loginAction(req, res) {
+        
         const resultValidation = loginSchema.safeParse(req.body);
         if (!resultValidation.success) {
             return res.status(400).json({ message: resultValidation.error.message });

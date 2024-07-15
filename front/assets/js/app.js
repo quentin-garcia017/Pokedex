@@ -38,7 +38,15 @@ document.addEventListener('DOMContentLoaded', () => {
   fetchPokemonTypes();
   
   
-  
+/*
+  ***   *   *  *****  *   *
+ *   *  *   *    *    *   *
+ *   *  *   *    *    *   *
+ *   *  *   *    *    *****
+ *****  *   *    *    *   *
+ *   *  *   *    *    *   *
+ *   *   ***     *    *   *
+*/
   
   // Vérifier si l'utilisateur est connecté ou non
   function checkAuthentication() {
@@ -157,6 +165,7 @@ checkAuthentication();
         loginModal.classList.remove('is-active');
         // Redirigez l'utilisateur vers la page des pokémons après une connexion réussie
         checkAuthentication();
+
     } catch (error) {
         console.error('Error:', error);
         alert('Une erreur est survenue, veuillez réessayer.');
@@ -185,9 +194,6 @@ logoutButton.addEventListener('click', async () => {
       alert('Une erreur est survenue, veuillez réessayer.');
   }
 });
-
-
-  
   
   // Ouvrir la modal d'ajout de team
   addTeamBtn.addEventListener('click', () => {
@@ -206,7 +212,17 @@ logoutButton.addEventListener('click', async () => {
     addTeam(teamName);
     teamModal.style.display = 'none';
   });
-  
+
+  /*
+  ***   *****   ***    ****  *****  ******  *   *
+ *   *  *    * *   *  *    *   *      *     *   *
+ *   *  *    * *   *  *        *      *      * * 
+ *   *  *****  *****  *        *      *       *  
+ *   *  *      *   *  *        *      *       *  
+ *   *  *      *   *  *    *   *      *       *  
+  ***   *      *   *   ****  *****    *       *
+*/
+
   // Fonction pour afficher ou cacher un élément
   function togglePartialOpacity(element) {
     if (element.style.opacity === '1') {
@@ -247,6 +263,17 @@ logoutButton.addEventListener('click', async () => {
     toggleMiddleOpacity(navbar);
   });
  
+
+  /*
+  ****   ***  ****  ******  ***  ****  *     ******
+ *      *   * *   *   *    *   * *   * *     *
+ *      *   * *   *   *    *   * *   * *     *
+  ****  *   * ****    *    *****  ***  *     *****
+      * *   * * *     *    *   * *   * *     *
+      * *   * *  *    *    *   * *   * *     *
+  ****   ***  *   *   *    *   * ****  ***** ******
+*/
+
   // Fonction pour initialiser la fonctionnalité SortableJS
 
   const teamList = document.querySelector('.team-list');
@@ -313,31 +340,16 @@ logoutButton.addEventListener('click', async () => {
     })
     .catch(error => console.error('Error updating type order:', error));
   }
- 
- 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+/*
+ ******  ******   ***   *   *
+   *     *       *   *  ** **
+   *     *       *   *  * * *
+   *     ****    *****  *   *
+   *     *       *   *  *   *
+   *     *       *   *  *   *
+   *     ******  *   *  *   *
+*/
 
   // Fonction pour récupérer et afficher les équipes
   function fetchTeams() {
@@ -543,19 +555,15 @@ logoutButton.addEventListener('click', async () => {
      document.getElementById('pokemon-team-modal').style.display = 'none';
     }
 
-
-     
-      
- 
-
-
-
-
-
-
-
-
-
+/*
+ *****   ***  *   *  ******  *   *   ***  *   *
+ *    * *   * *  *   *       ** ** *   * **  *
+ *    * *   * * *    *       * * * *   * * * *
+ *****  *   * **     ****    *   * *   * *  **
+ *      *   * * *    *       *   * *   * * * *
+ *      *   * *  *   *       *   * *   * **  *
+ *       ***  *   *  ******  *   *  ***  *   *
+*/
 
   // Fonction pour récupérer et afficher les Pokémon
   function fetchPokemons() {
@@ -629,6 +637,7 @@ logoutButton.addEventListener('click', async () => {
     fetch(`${apiBaseUrl}/pokemons/${pokemonId}`)
       .then(response => response.json())
       .then(data => {
+        console.log('Données du Pokémon récupérées:', data);
         const pokemonDetails = document.getElementById('pokemon-details');
         pokemonDetails.classList.add('pokemon-grid');
 
@@ -675,8 +684,6 @@ logoutButton.addEventListener('click', async () => {
       })
       
   }
-
-  
 
   function showAddToTeamModal(pokemonId) {
     const addPokemonToTeamModal = document.getElementById('add-pokemon-to-team-modal');
@@ -743,31 +750,15 @@ document.querySelector('.navbar-search').addEventListener('keyup', async (event)
   }
 });
   
-  
-
-      
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+/*
+ ******  *   *  *****   ******
+   *      * *   *    *  *
+   *       *    *    *  *
+   *       *    *****   *****
+   *       *    *       *
+   *       *    *       *
+   *       *    *       ******
+*/
 
   // Fonction pour récupérer et afficher les types de Pokémon
   function fetchPokemonTypes() {
